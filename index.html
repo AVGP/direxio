@@ -26,7 +26,7 @@
                 </form>
                 <ul>
                     <li ng-repeat="connection in connections">
-                        {{connection.displayText}}
+                        <connection data="{{connection}}"></connection>
                     </li>
                 </ul>
             </article>
@@ -49,6 +49,7 @@
         <script type="text/javascript" src="components/lungo-angular-bridge/dist/lungo-angular-bridge.js"></script>
         <!-- Our Angular app files -->
         <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
         <script type="text/javascript" src="js/services.js"></script>
         <script type="text/javascript" src="js/controller.js"></script>
     </body>
