@@ -28,7 +28,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                     var route = data.routes[i];
                     var connection = {
                         displayText: route.legs[0].departure_time.text + " - " + route.legs[0].arrival_time.text,
-                        steps: route.legs[0].steps;
+                        steps: route.legs[0].steps
                     };
                     connections.push(connection);
                 }
