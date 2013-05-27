@@ -17,11 +17,17 @@ window.Direxio.directive('connection', function() {
             
             $scope.expand = function() {
                 $scope.$parent.$parent.expandedId = $scope.$id;
+                var boundaries = {
+                    northeast: new google.maps.LatLng($scope.connection.bounds.northeast.lat, $scope.connection.bounds.northeast.lng),
+                    southwest: new google.maps.LatLng($scope.connection.bounds.southwest.lat, $scope.connection.bounds.southwest.lng),                    
+                };
                 var map = new google.maps.Map(document.getElementById('map_me_baby_' + $scope.$id), {
                     zoom: 13,
                     center: new google.maps.LatLng($scope.connection.start_location.lat, $scope.connection.start_location.lng),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    bounds: new google.maps.LatLngBounds(boundaries.northeast, boundaries.southwest)
                 });
+                /*/
                 var polyPoints = [];
                 for(var i=0, len = $scope.connection.steps.length; i<len; i++) {
                     var step = $scope.connection.steps[i].start_location;
@@ -39,6 +45,7 @@ window.Direxio.directive('connection', function() {
                     strokeWeight: 2,
                     map: map
                 });
+                */
             };
             
             $scope.isExpanded = function() {
@@ -57,9 +64,10 @@ window.Direxio.directive('connection', function() {
         },
         template: '<div>'
             + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave at {{connection.leave.toTimeString()}}</div>'                        
-            + '<div class="connection-details" ng-class="{expanded: isExpanded()}"><ul class="connection-instructions">' //Starting connection details & instructions           
+            + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
             + '<div id="map_me_baby_{{$id}}" class="map" style="height:300px;width:300px"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
+            + '<ul class="connection-instructions">' // Starting instruction container     
             + '<li ng-repeat="step in connection.steps">{{step.html_instructions}}</li>'
             + '</ul>' //Ending instruction container
             + '<button ng-click="notifyMe(connection)">Notify me for this</button>'
