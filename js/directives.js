@@ -24,10 +24,10 @@ window.Direxio.directive('connection', function() {
                 var map = new google.maps.Map(document.getElementById('map_me_baby_' + $scope.$id), {
                     zoom: 13,
                     center: new google.maps.LatLng($scope.connection.start_location.lat, $scope.connection.start_location.lng),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    bounds: new google.maps.LatLngBounds(boundaries.northeast, boundaries.southwest)
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
-                /*/
+                map.fitBounds(new google.maps.LatLngBounds(boundaries.southwest, boundaries.northeast));
+                
                 var polyPoints = [];
                 for(var i=0, len = $scope.connection.steps.length; i<len; i++) {
                     var step = $scope.connection.steps[i].start_location;
@@ -40,12 +40,12 @@ window.Direxio.directive('connection', function() {
                 
                 var path = new google.maps.Polyline({
                     path: polyPoints,
-                    strokeColor: '#FF0000',
+                    strokeColor: '#0093d5',
                     strokeOpacity: 1.0,
                     strokeWeight: 2,
                     map: map
                 });
-                */
+                
             };
             
             $scope.isExpanded = function() {

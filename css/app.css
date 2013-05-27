@@ -26,10 +26,12 @@ input.wide, .wide {
 
 .connection-container {
     position: relative;
+    overflow: scroll;
     height: 100%;
     min-height: 100%;
     border: 2px solid #ccc;
     clear: both;
+    margin-top: 10px;
 }
 
 .connection-details {
@@ -41,18 +43,23 @@ input.wide, .wide {
     display: block !important;
 }
 
+
 .connection-instructions {
     list-style: arrow;
     padding-left: 20px;
+    padding-bottom: 10px;
 }
 
 .map {
+    display: none;
 }
 
 @media (min-width: 800px) {
     
     .map {
         float: right;
+        display: block;
+        width: 50%;
     }
 
     .connection-title {
