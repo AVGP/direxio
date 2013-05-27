@@ -17,3 +17,45 @@ input.centered, .centered {
 input.wide, .wide {
     width: 98% !important;
 }
+
+/****************************************\
+*                                        *
+* Connection directive stuff goes below! *
+*                                        *
+\****************************************/
+
+.connection-container {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    border: 2px solid #ccc;
+    clear: both;
+}
+
+.connection-details {
+    display: none;
+    padding: 5px 5px 5px 15px
+}
+
+.expanded {
+    display: block !important;
+}
+
+.connection-instructions {
+    list-style: arrow;
+    padding-left: 20px;
+}
+
+@media (min-width: 800px) {
+    .connection-title {
+        max-width: 25%;
+    }
+    .connection-details {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 75%;
+        height: 100%;
+        border-left: 3px solid #ccc;
+    }
+}
