@@ -9,6 +9,7 @@
   "dependencies": {
     "lungo": "latest",
     "angular": "1.0.6",
+    "moment": "2.0.0",
     "lungo-angular-bridge": "git@github.com:centralway/lungo-angular-bridge.git#0.1.1"
   }
 }
