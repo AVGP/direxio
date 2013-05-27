@@ -1,0 +1,1 @@
+angular.module('Direxio.directives').directive();

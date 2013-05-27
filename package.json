@@ -1,0 +1,13 @@
+{
+  "name": "Direxio",
+  "version": "0.0.1",
+  "description": "Super easy public transit app",
+  "dependencies": {
+    "bower": "",
+    "grunt": "~0.4.0",
+    "grunt-zipstream": "~0.2.0", 
+    "grunt-phonegap-build": "https://github.com/centralway/grunt-phonegap-build/tarball/master"
+  },
+  "author": "Martin Naumann",
+  "homepage": "http://avgp.github.io/direxio"
+}

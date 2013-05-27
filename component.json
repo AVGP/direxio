@@ -1,0 +1,14 @@
+{
+  "name": "Direxio",
+  "description": "Super easy public transit app",
+  "version": "0.0.1",
+  "author": {
+    "name": "Martin Naumann"
+  },
+  "main": "js/app.js",
+  "dependencies": {
+    "lungo": "latest",
+    "angular": "1.0.6",
+    "lungo-angular-bridge": "git@github.com:centralway/lungo-angular-bridge.git#0.1.1"
+  }
+}

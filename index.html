@@ -1,0 +1,55 @@
+<html ng-app="DirexioApp">
+    <head>
+        <title>Direxio</title>
+
+        <link rel="stylesheet" type="text/css" href="components/lungo/lungo.css"/>
+        <link rel="stylesheet" type="text/css" href="components/lungo/lungo.icon.css"/>
+        <link rel="stylesheet" type="text/css" href="components/lungo/theme.lungo.css"/>
+        <link rel="stylesheet" type="text/css" href="css/app.css"/>
+        <script type="text/javascript" src="components/quojs/quo.debug.js"></script>
+        <script type="text/javascript" src="components/lungo/lungo.js"></script>
+    </head>
+    <body class="app" lab-boot>
+        <section id="main" data-transition="slide">            
+            <header ng-controller="AppCtrl">
+                <nav class="left">
+                    <a data-icon="menu" lab-aside="aside1"></a>
+                </nav>
+                Direxio
+            </header>
+
+            <article id="main-article" class="active" ng-controller="DirectionsCtrl">
+                <h1 class="big centered">Get me directions to</h1>
+                <form>
+                    <input type="text" ng-model="destination" class="big block wide centered" />
+                    <button class="block centered" lab-tap="findConnections()">Show me connections</button>
+                </form>
+                <ul>
+                    <li ng-repeat="connection in connections">
+                        {{connection.displayText}}
+                    </li>
+                </ul>
+            </article>
+        </section>
+<!--                
+        <aside id="aside1">
+            <header data-title="Direxio"></header>
+            <article class="active list scroll">
+                <ul>
+                    <li><a href="#/dynamic"><strong>Dynamic</strong></a></li>
+                    <li><a href="#/static"><strong>Static</strong></a></li>
+                    <li><a href="#/deeplink/view/demo"><strong>Deeplink</strong></a></li>
+                </ul>
+            </article>
+        </aside>
+-->
+        <lab-view></lab-view>        
+        
+        <script type="text/javascript" src="components/angular/angular.js"></script>
+        <script type="text/javascript" src="components/lungo-angular-bridge/dist/lungo-angular-bridge.js"></script>
+        <!-- Our Angular app files -->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controller.js"></script>
+    </body>
+</html>

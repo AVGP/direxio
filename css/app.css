@@ -1,0 +1,19 @@
+.block {
+    display: block !important;
+}
+
+.big {
+    font-size: 1.5em !important;
+    line-height: 2em !important;
+    height: 2.5em !important;
+}
+
+input.centered, .centered {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+input.wide, .wide {
+    width: 98% !important;
+}
