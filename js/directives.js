@@ -18,8 +18,14 @@ window.Direxio.directive('connection', function() {
             $scope.expand = function() {
                 $scope.$parent.$parent.expandedId = $scope.$id;
                 var boundaries = {
-                    northeast: new google.maps.LatLng($scope.connection.bounds.northeast.lat, $scope.connection.bounds.northeast.lng),
-                    southwest: new google.maps.LatLng($scope.connection.bounds.southwest.lat, $scope.connection.bounds.southwest.lng),                    
+                    northeast: new google.maps.LatLng(
+                        $scope.connection.bounds.northeast.lat, 
+                        $scope.connection.bounds.northeast.lng
+                    ),
+                    southwest: new google.maps.LatLng(
+                        $scope.connection.bounds.southwest.lat,
+                        $scope.connection.bounds.southwest.lng
+                    )                    
                 };
                 var map = new google.maps.Map(document.getElementById('map_me_baby_' + $scope.$id), {
                     zoom: 13,
@@ -57,13 +63,14 @@ window.Direxio.directive('connection', function() {
                 var connectionObj = JSON.parse(connection);
                 if(connectionObj.steps[0].travel_mode === "WALKING") {
                     connectionObj.leave = new Date(connectionObj.departureTime * 1000 - connectionObj.steps[0].duration.value * 1000);
+                    connectionObj.leaveText = moment(connectionObj.leave).fromNow();
                 }
                 scope.connection = connectionObj;
             });
             
         },
         template: '<div>'
-            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave at {{connection.leave.toTimeString()}}</div>'                        
+            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave at {{connection.leaveText}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
             + '<div id="map_me_baby_{{$id}}" class="map" style="height:300px;width:300px"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
