@@ -2,12 +2,14 @@
     <head>
         <title>Direxio</title>
 
+        <link rel="icon" type="image/png" href="img/icon.png"/>
         <link rel="stylesheet" type="text/css" href="components/lungo/lungo.css"/>
         <link rel="stylesheet" type="text/css" href="components/lungo/lungo.icon.css"/>
         <link rel="stylesheet" type="text/css" href="components/lungo/theme.lungo.css"/>
         <link rel="stylesheet" type="text/css" href="css/app.css"/>
         <script type="text/javascript" src="components/quojs/quo.debug.js"></script>
         <script type="text/javascript" src="components/lungo/lungo.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     </head>
     <body class="app" lab-boot>
         <section id="main" data-transition="slide">            
@@ -24,7 +26,7 @@
                     <input type="text" ng-model="destination" class="big block wide centered" />
                     <button class="block centered" lab-tap="findConnections()">Show me connections</button>
                 </form>
-                <ul>
+                <ul class="connection-container">
                     <li ng-repeat="connection in connections">
                         <connection data="{{connection}}"></connection>
                     </li>
