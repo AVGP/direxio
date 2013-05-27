@@ -22,6 +22,23 @@ window.Direxio.directive('connection', function() {
                     center: new google.maps.LatLng($scope.connection.start_location.lat, $scope.connection.start_location.lng),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
+                var polyPoints = [];
+                for(var i=0, len = $scope.connection.steps.length; i<len; i++) {
+                    var step = $scope.connection.steps[i].start_location;
+                    var latLng = new google.maps.LatLng(step.lat, step.lng);
+                    polyPoints.push(latLng);
+                    new google.maps.Marker({position: latLng, map: map});
+                }
+                var end = $scope.connection.end_location;
+                polyPoints.push(new google.maps.LatLng(end.lat, end.lng));
+                
+                var path = new google.maps.Polyline({
+                    path: polyPoints,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                    map: map
+                });
             };
             
             $scope.isExpanded = function() {
