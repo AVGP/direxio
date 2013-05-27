@@ -9,6 +9,10 @@ function DirectionsCtrl($scope, directionsSvc) {
     $scope.connections = [];
     
     $scope.findConnections = function() {
+        if(window.webkitNotifications && window.webkitNotifications.checkPermission() !== 0) {
+            window.webkitNotifications.requestPermission();
+        }
+        
         directionsSvc.getConnectionsFromHereTo($scope.destination, function(connections) {
             console.log(connections)
             $scope.connections = connections;
