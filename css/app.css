@@ -46,7 +46,15 @@ input.wide, .wide {
     padding-left: 20px;
 }
 
+.map {
+}
+
 @media (min-width: 800px) {
+    
+    .map {
+        float: right;
+    }
+
     .connection-title {
         max-width: 25%;
     }
