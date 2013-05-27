@@ -27,7 +27,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                 for(var i=0, len = data.routes.length;i < len; i++) {
                     var route = data.routes[i];
                     var connection = route.legs[0];
-                    connection.displayText = route.legs[0].departure_time.text + " - " + route.legs[0].arrival_time.text;
+                    connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow() + " - " + route.legs[0].arrival_time.text;
                     connection.departureTime = route.legs[0].departure_time.value;
                     connection.bounds = route.bounds;
                     connections.push(connection);
