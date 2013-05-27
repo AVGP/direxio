@@ -41,8 +41,8 @@ window.Direxio.directive('connection', function() {
         template: '<div>'
             + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave at {{connection.leave.toTimeString()}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}"><ul class="connection-instructions">' //Starting connection details & instructions           
+            + '<div id="map_me_baby_{{$id}}" class="map" style="height:300px;width:300px"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
-            + '<div id="map_me_baby_{{$id}}" style="height:300px;width:300px"></div>'
             + '<li ng-repeat="step in connection.steps">{{step.html_instructions}}</li>'
             + '</ul>' //Ending instruction container
             + '<button ng-click="notifyMe(connection)">Notify me for this</button>'
