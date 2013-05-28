@@ -1,0 +1,13 @@
+{
+  "name": "Direxio",
+  "description": "Making public transit more comfortable",
+  "launch_path": "/direxio/index.html",
+  "icons": {
+    "128": "/direxio/img/icon.png"
+  },
+  "developer": {
+    "name": "Martin Naumann",
+    "url": "http://www.geekonaut.de"
+  },
+  "default_locale": "en"
+}
