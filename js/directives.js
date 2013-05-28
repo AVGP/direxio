@@ -12,6 +12,12 @@ window.Direxio.directive('connection', function() {
                        window.webkitNotifications.createNotification('/img/icon.png', 'Time to leave!', 'Leave now, if you want to get your public transit connection!').show();
                    }, whenToNotify);
                    alert("You will get notified, when you have to leave for this connection!");
+                } else if(navigator.mozNotification) {
+                   var whenToNotify = connection.leave.getTime() - new Date().getTime();
+                   setTimeout(function() {
+                       navigator.mozNotification.createNotification('Time to leave!', 'Leave now, if you want to get your public transit connection!', '/img/icon.png').show();
+                   }, whenToNotify);
+                   alert("You will get notified, when you have to leave for this connection!");                
                 }
             };
             
@@ -27,7 +33,7 @@ window.Direxio.directive('connection', function() {
                         $scope.connection.bounds.southwest.lng
                     )                    
                 };
-                var map = new google.maps.Map(document.getElementById('map_me_baby_' + $scope.$id), {
+                var map = new google.maps.Map(document.getElementById('map_' + $scope.$id), {
                     zoom: 13,
                     center: new google.maps.LatLng($scope.connection.start_location.lat, $scope.connection.start_location.lng),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -62,7 +68,7 @@ window.Direxio.directive('connection', function() {
             attrs.$observe('data', function(connection) {
                 var connectionObj = JSON.parse(connection);
                 if(connectionObj.steps[0].travel_mode === "WALKING") {
-                    connectionObj.leave = new Date(connectionObj.departureTime * 1000 - connectionObj.steps[0].duration.value * 1000);
+                    connectionObj.leave = new Date(connectionObj.departureTime * 1000);
                     connectionObj.leaveText = moment(connectionObj.leave).fromNow();
                 }
                 scope.connection = connectionObj;
@@ -70,9 +76,9 @@ window.Direxio.directive('connection', function() {
             
         },
         template: '<div>'
-            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave at {{connection.leaveText}}</div>'                        
+            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave the house {{connection.leaveText}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
-            + '<div id="map_me_baby_{{$id}}" class="map" style="height:300px;width:300px"></div>'
+            + '<div id="map_{{$id}}" class="map" style="height:50%;width:50%"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
             + '<ul class="connection-instructions">' // Starting instruction container     
             + '<li ng-repeat="step in connection.steps">{{step.html_instructions}}</li>'
