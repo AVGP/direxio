@@ -1,4 +1,4 @@
-{
+{}
   "name": "Direxio",
   "description": "Making public transit more comfortable",
   "launch_path": "/direxio/index.html",
@@ -9,5 +9,10 @@
     "name": "Martin Naumann",
     "url": "http://www.geekonaut.de"
   },
-  "default_locale": "en"
+  "default_locale": "en",
+  "permissions": {
+    "desktop-notification": {
+      "description": "Notify the user when to leave to get to his connection in time"
+    }  
+  }
 }
