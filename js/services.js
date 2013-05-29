@@ -10,16 +10,17 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
         navigator.geolocation.getCurrentPosition(callbackFn);
     };
     
-    self.getConnections = function(from, to, callbackFn) {
+    self.getConnections = function(from, to, successCallbackFn, errorCallbackFn) {
         $http({method: 'GET', url: 'http://cors.io/maps.googleapis.com/maps/api/directions/json?'
             + 'origin=' + from
             + '&destination=' + to
             + '&departure_time=' + ~~(new Date().getTime() / 1000)
             + '&sensor=true&mode=transit&alternatives=true'})
-        .success(callbackFn);
+        .success(successCallbackFn)
+        .error(errorCallbackFn);
     };
     
-    self.getConnectionsFromHereTo = function(destination, callbackFn) {
+    self.getConnectionsFromHereTo = function(destination, successCallbackFn, errorCallbackFn) {
         self.getCurrentLocation(function(position) {
             var from = position.coords.latitude + ',' + position.coords.longitude;
             self.getConnections(from, destination, function(data) {
@@ -32,8 +33,8 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                     connection.bounds = route.bounds;
                     connections.push(connection);
                 }
-                callbackFn(connections);
-            });
+                successCallbackFn(connections);
+            }, errorCallbackFn);
         });
     };
     
