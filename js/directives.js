@@ -70,7 +70,10 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             + '<div id="map_{{$id}}" class="map" style="height:50%;width:50%"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
             + '<ul class="connection-instructions">' // Starting instruction container     
-            + '<li ng-repeat="step in connection.steps">{{step.html_instructions}}</li>'
+            + '<li ng-repeat="step in connection.steps">'
+            + '{{step.html_instructions}} '
+            + '<span ng-show="step.transit_details">({{step.transit_details.departure_time.text}} from {{step.transit_details.departure_stop.name}})</span>'
+            + '</li>'
             + '</ul>' //Ending instruction container
             + '<button ng-click="notifyMe(connection)">Notify me for this</button>'
             + '</div>' //Ending connection details container
