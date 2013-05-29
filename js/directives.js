@@ -1,4 +1,4 @@
-window.Direxio.directive('connection', function() {
+window.Direxio.directive('connection', [ 'notificationSvc', function(notificationSvc) {
     return {
         restrict: 'E',
         scope: {
@@ -6,19 +6,8 @@ window.Direxio.directive('connection', function() {
         },
         controller: function($scope, $element, $attrs) {
             $scope.notifyMe = function(connection) {
-                if(window.webkitNotifications && (window.webkitNotifications.checkPermission() == 0)) {
-                   var whenToNotify = connection.leave.getTime() - new Date().getTime();
-                   setTimeout(function() {
-                       window.webkitNotifications.createNotification('/img/icon.png', 'Time to leave!', 'Leave now, if you want to get your public transit connection!').show();
-                   }, whenToNotify);
-                   alert("You will get notified, when you have to leave for this connection!");
-                } else if(navigator.mozNotification) {
-                   var whenToNotify = connection.leave.getTime() - new Date().getTime();
-                   setTimeout(function() {
-                       navigator.mozNotification.createNotification('Time to leave!', 'Leave now, if you want to get your public transit connection!', '/img/icon.png').show();
-                   }, whenToNotify);
-                   alert("You will get notified, when you have to leave for this connection!");                
-                }
+                var whenToNotify = connection.leave.getTime() - new Date().getTime();
+                notificationSvc.notify('/img/icon.png', 'Time to leave!', 'Leave for your connection!', whenToNotify);
             };
             
             $scope.expand = function() {
@@ -88,4 +77,4 @@ window.Direxio.directive('connection', function() {
             + '</div>',
         replace: true
     };
-});
+}]);

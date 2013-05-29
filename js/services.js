@@ -39,3 +39,26 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
     
     return self;
 }]);
+
+
+window.Direxio.factory('notificationSvc', function() {
+    var self = {};
+    
+    self.notify = function(iconUrl, title, message, timeoutMilliSecs) {
+        var notification = null;
+        if(window.webkitNotifications && (window.webkitNotifications.checkPermission() == 0)) {
+            notification = window.webkitNotifications.createNotification(iconUrl, title, message);
+        } else if(navigator.mozNotification) {
+           notification = navigator.mozNotification.createNotification(title, message, iconUrl);
+        }
+        
+        if(notification !== null) {
+           setTimeout(function() {
+               notification.show();
+           }, timeoutMilliSecs);
+           alert("You will get notified, when you have to leave for this connection!");                
+        }
+    }
+    
+    return self;
+});
