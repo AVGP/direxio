@@ -17,7 +17,7 @@ function DirectionsCtrl($scope, directionsSvc) {
         
         directionsSvc.getConnectionsFromHereTo($scope.destination, function(connections) {
             $scope.isLoading = false;
-            console.log(connections)
+            console.log(connections);
             $scope.connections = connections;
         });
     }
