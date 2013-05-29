@@ -16,7 +16,8 @@ function DirectionsCtrl($scope, directionsSvc) {
     
     $scope.install = function() {
         console.log("Installation attempt...");
-        var request = window.navigator.mozApps.install(location.href + '/manifest.webapp');
+        //TODO Find a better way around this absolute URL problem
+        var request = window.navigator.mozApps.install('http://avgp.github.io/direxio/manifest.webapp');
         request.onsuccess = function () {
             // Save the App object that is returned
             var appRecord = this.result;
