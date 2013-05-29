@@ -64,12 +64,14 @@ input.wide, .wide {
 
     .connection-title {
         max-width: 25%;
+        width: 25%;
+        min-width:25%;
     }
     .connection-details {
         position: absolute;
         top: 0px;
         right: 0px;
-        width: 75%;
+        width: 70%;
         height: 100%;
         border-left: 3px solid #ccc;
     }
