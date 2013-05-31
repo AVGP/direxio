@@ -4,8 +4,8 @@
 
         <link rel="icon" type="image/png" href="img/icon.png"/>
         <link rel="stylesheet" type="text/css" href="components/lungo/lungo.css"/>
-        <link rel="stylesheet" type="text/css" href="components/lungo/lungo.icon.css"/>
-        <link rel="stylesheet" type="text/css" href="components/lungo/theme.lungo.css"/>
+        <link rel="stylesheet" type="text/css" href="components/lungo/lungo.icon.css">
+        <link rel="stylesheet" type="text/css" href="components/lungo.brownie/lungo.theme.css"/>
         <link rel="stylesheet" type="text/css" href="css/app.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -32,7 +32,7 @@
                 </form>
                 <div class="centered" ng-show="isLoading"><img src="img/loader.gif" class="centered" alt="Loading..." /></div>
                 <ul class="connection-container" ng-show="!isLoading">
-                    <li ng-repeat="connection in connections">
+                    <li class="connection-item" ng-repeat="connection in connections">
                         <connection data="{{connection}}"></connection>
                     </li>
                 </ul>
