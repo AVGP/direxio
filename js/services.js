@@ -28,8 +28,16 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                 for(var i=0, len = data.routes.length;i < len; i++) {
                     var route = data.routes[i];
                     var connection = route.legs[0];
-                    connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow() + " - " + route.legs[0].arrival_time.text;
-                    connection.departureTime = route.legs[0].departure_time.value;
+                    connection.displayText = "";
+                    if(route.legs[0].departure_time) {
+                        connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow()
+                            + " - " 
+                            + route.legs[0].arrival_time.text;
+                        connection.departureTime = route.legs[0].departure_time.value;
+                    } else {
+                        connection.displayText = route.summary;
+                        connection.departureTime = new Date();
+                    }
                     connection.bounds = route.bounds;
                     connections.push(connection);
                 }
