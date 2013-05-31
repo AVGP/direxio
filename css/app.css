@@ -1,3 +1,9 @@
+/*****************\
+*                 *
+* Generic classes *
+*                 *
+\*****************/
+        
 .block {
     display: block !important;
 }
@@ -18,6 +24,13 @@ input.wide, .wide {
     width: 98% !important;
 }
 
+/******************\
+*                  *
+* Generic elements *
+*                  *
+\******************/
+
+
 /****************************************\
 *                                        *
 * Connection directive stuff goes below! *
@@ -34,9 +47,20 @@ input.wide, .wide {
     margin-top: 10px;
 }
 
+.connection-item {
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+.connection-title {
+    padding-bottom: 1em;
+    border-bottom: dashed 1px #8ac;
+}
+
 .connection-details {
     display: none;
-    padding: 5px 5px 5px 15px
+    padding: 5px 5px 5px 15px;
+    font-size: 1em;
 }
 
 .expanded {
