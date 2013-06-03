@@ -62,14 +62,14 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
                 var connectionObj = JSON.parse(connection);
                 if(connectionObj.steps[0].travel_mode === "WALKING") {
                     connectionObj.leave = new Date(connectionObj.departureTime * 1000);
-                    connectionObj.leaveText = moment(connectionObj.leave).fromNow();
+                    connectionObj.leaveText = ", leave in " + moment(connectionObj.leave).fromNow();
                 }
                 scope.connection = connectionObj;
             });
             
         },
         template: '<li class="connection-item">'
-            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave the house {{connection.leaveText}}</div>'                        
+            + '<div class="connection-title" ng-click="expand()">{{connection.displayText}} {{connection.leaveText}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
             + '<div id="map_{{$id}}" class="map" style="height:50%;width:50%"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
