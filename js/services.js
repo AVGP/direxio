@@ -6,7 +6,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
             alert("Sorry, your device does not support geo location features! :/");
             return false;
         }
-        
+        console.log("getCurrentLocation was called");
         navigator.geolocation.getCurrentPosition(callbackFn);
     };
     
@@ -23,6 +23,8 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
     self.getConnectionsFromHereTo = function(destination, successCallbackFn, errorCallbackFn) {
         self.getCurrentLocation(function(position) {
             var from = position.coords.latitude + ',' + position.coords.longitude;
+            console.log("Got position info");
+            console.log(from);
             self.getConnections(from, destination, function(data) {
                 var connections = [];
                 for(var i=0, len = data.routes.length;i < len; i++) {
@@ -41,6 +43,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                     connection.bounds = route.bounds;
                     connections.push(connection);
                 }
+                console.log("FOUND " + connections.length + " connections");
                 successCallbackFn(connections);
             }, errorCallbackFn);
         });
