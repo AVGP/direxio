@@ -5,7 +5,7 @@ function AppCtrl($scope, $location) {
 }
 
 function DirectionsCtrl($scope, directionsSvc) {
-    $scope.destination = "Zurich HB";
+    $scope.destination = "";
     $scope.connections = [];
     $scope.isLoading = false;
     
