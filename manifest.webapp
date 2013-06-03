@@ -13,6 +13,9 @@
   "permissions": {
     "desktop-notification": {
       "description": "Notify the user when to leave to get to his connection in time"
+    },
+    "geolocation": {
+      "description": "Allows to get directions starting from the current position"
     }  
   }
 }
