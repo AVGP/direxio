@@ -11,7 +11,11 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             };
             
             $scope.expand = function() {
-                $scope.$parent.$parent.expandedId = $scope.$id;
+                if($scope.isExpanded()) {
+                    $scope.$parent.$parent.expandedId = null;
+                } else {
+                    $scope.$parent.$parent.expandedId = $scope.$id;
+                }
                 var boundaries = {
                     northeast: new google.maps.LatLng(
                         $scope.connection.bounds.northeast.lat, 
@@ -64,7 +68,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             });
             
         },
-        template: '<div>'
+        template: '<li class="connection-item">'
             + '<div class="connection-title" ng-click="expand()">{{connection.displayText}}, leave the house {{connection.leaveText}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
             + '<div id="map_{{$id}}" class="map" style="height:50%;width:50%"></div>'
