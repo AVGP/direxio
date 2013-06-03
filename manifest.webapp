@@ -5,6 +5,7 @@
   "icons": {
     "128": "/direxio/img/icon.png"
   },
+  "version": "0.0.1beta",
   "developer": {
     "name": "Martin Naumann",
     "url": "http://www.geekonaut.de"
