@@ -39,6 +39,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
                     var route = data.routes[i];
                     var connection = route.legs[0];
                     connection.displayText = "";
+                    connection.copyrights = route.copyrights;
                     if(route.legs[0].departure_time) {
                         connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow()
                             + " - " 
