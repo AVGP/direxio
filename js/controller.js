@@ -8,9 +8,9 @@ function DirectionsCtrl($scope, directionsSvc) {
     $scope.destination = "";
     $scope.connections = [];
     $scope.isLoading = false;
+    $scope.loadingState = "Loading...";
     
     $scope.isInstallable = function() {
-//        alert(window.navigator.mozApps !== undefined);
         return window.navigator.mozApps !== undefined;
     }
     
@@ -45,6 +45,6 @@ function DirectionsCtrl($scope, directionsSvc) {
             }
             console.log(error, status);
             $scope.isLoading = false;
-        });
+        }, function setLoadingState(state) { $scope.loadingState = state; console.log("LS: ", $scope.loadingState); });
     }
 }
