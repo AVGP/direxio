@@ -80,6 +80,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             + '</li>'
             + '</ul>' //Ending instruction container
             + '<button ng-click="notifyMe(connection)">Notify me for this</button>'
+            + '<p class="copyright">{{connection.copyrights}}</p>'
             + '</div>' //Ending connection details container
             + '</div>',
         replace: true
