@@ -65,6 +65,12 @@ article {
     font-size: 1em;
 }
 
+ .copyright {
+    font-size: 0.5em;
+    color: #ccc;
+    padding-top: 1em;
+}
+
 .expanded {
     display: block !important;
 }
