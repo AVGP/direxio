@@ -5,11 +5,22 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             connection: '@data'
         },
         controller: function($scope, $element, $attrs) {
+            var map = null;
             $scope.notifyMe = function(connection) {
                 var whenToNotify = connection.leave.getTime() - new Date().getTime();
                 notificationSvc.notify('/img/icon.png', 'Time to leave!', 'Leave for your connection!', whenToNotify);
             };
-            
+
+            $scope.isMapShown = false;
+            $scope.showMap = function() {
+                $scope.isMapShown = true;
+                //TODO Make this work properly :(
+                setTimeout(function() {
+                    google.maps.event.trigger(map, 'resize');
+                    map.setZoom( map.getZoom() );
+                }, 0);
+            }
+                                                
             $scope.expand = function() {
                 if($scope.isExpanded()) {
                     $scope.$parent.$parent.expandedId = null;
@@ -26,7 +37,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
                         $scope.connection.bounds.southwest.lng
                     )                    
                 };
-                var map = new google.maps.Map(document.getElementById('map_' + $scope.$id), {
+                map = new google.maps.Map(document.getElementById('map_' + $scope.$id), {
                     zoom: 13,
                     center: new google.maps.LatLng($scope.connection.start_location.lat, $scope.connection.start_location.lng),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -52,7 +63,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
                 });
                 
             };
-            
+                        
             $scope.isExpanded = function() {
                 return $scope.$id === $scope.$parent.$parent.expandedId;
             }
@@ -71,7 +82,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
         template: '<li class="connection-item">'
             + '<div class="connection-title" ng-click="expand()">{{connection.displayText}} {{connection.leaveText}}</div>'                        
             + '<div class="connection-details" ng-class="{expanded: isExpanded()}">' //Starting connection details           
-            + '<div id="map_{{$id}}" class="map" style="height:50%;width:50%"></div>'
+            + '<div id="map_{{$id}}" class="map" ng-class="{visible: isMapShown}"></div>'
             + '<p>Departure at {{connection.departure_time.text}}, arriving at {{connection.arrival_time.text}} ({{connection.duration.text}})</p>'
             + '<ul class="connection-instructions">' // Starting instruction container     
             + '<li ng-repeat="step in connection.steps">'
@@ -80,6 +91,7 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             + '</li>'
             + '</ul>' //Ending instruction container
             + '<button ng-click="notifyMe(connection)">Notify me for this</button>'
+            + '<button class="small-screen-only" ng-click="showMap()">Show on map</button>'
             + '<p class="copyright">{{connection.copyrights}}</p>'
             + '</div>' //Ending connection details container
             + '</div>',
