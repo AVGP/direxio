@@ -38,6 +38,10 @@ button {
     margin: 2px;
 }
 
+h1 {
+    font-size: 1.5em;
+}
+
 /****************************************\
 *                                        *
 * Connection directive stuff goes below! *
