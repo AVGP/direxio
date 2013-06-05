@@ -34,6 +34,10 @@ article {
     overflow: scroll;
 }
 
+button {
+    margin: 2px;
+}
+
 /****************************************\
 *                                        *
 * Connection directive stuff goes below! *
@@ -84,15 +88,29 @@ article {
 
 .map {
     display: none;
+    width: 100%;
+    height: 200px;
+}
+
+.visible {
+    display:inline-block;
+}
+
+.small-screen-only {
+    display: inline-block;
 }
 
 @media (min-width: 800px) {
+    
+    .small-screen-only {
+        display: none;
+    }
     
     .map {
         float: right;
         display: block;
         width: 50%;
-        height: 100%;
+        height: 50%;
     }
 
     .connection-title {
