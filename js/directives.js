@@ -17,7 +17,12 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
                 //TODO Make this work properly :(
                 setTimeout(function() {
                     google.maps.event.trigger(map, 'resize');
-                    map.setZoom( map.getZoom() );
+                    map.setCenter(new google.maps.LatLng(
+                        $scope.connection.start_location.lat,
+                        $scope.connection.start_location.lng
+                    ));
+                    map.fitBounds(new google.maps.LatLngBounds(boundaries.southwest, boundaries.northeast));                
+                    map.setZoom(13);
                 }, 0);
             }
                                                 
