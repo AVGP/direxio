@@ -17,6 +17,6 @@
   "permissions": [
     "geolocation",
     "notifications",
-    "*//cors.io"
+    "http://cors.io/"
   ]
 }
