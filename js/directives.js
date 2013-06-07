@@ -15,13 +15,24 @@ window.Direxio.directive('connection', [ 'notificationSvc', function(notificatio
             $scope.showMap = function() {
                 $scope.isMapShown = true;
                 //TODO Make this work properly :(
-                setTimeout(function() {
+                setTimeout(function() {                    
+                    var boundaries = {
+                        northeast: new google.maps.LatLng(
+                            $scope.connection.bounds.northeast.lat, 
+                            $scope.connection.bounds.northeast.lng
+                        ),
+                        southwest: new google.maps.LatLng(
+                            $scope.connection.bounds.southwest.lat,
+                            $scope.connection.bounds.southwest.lng
+                        )                    
+                    };
+                    
                     google.maps.event.trigger(map, 'resize');
                     map.setCenter(new google.maps.LatLng(
                         $scope.connection.start_location.lat,
                         $scope.connection.start_location.lng
                     ));
-                    map.fitBounds(new google.maps.LatLngBounds(boundaries.southwest, boundaries.northeast));                
+                    map.fitBounds(new google.maps.LatLngBounds(boundaries.southwest, boundaries.northeast));   
                     map.setZoom(13);
                 }, 0);
             }
