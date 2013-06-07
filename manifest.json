@@ -1,0 +1,22 @@
+{
+  "name": "Direxio",
+  "description": "Get public transit directions from wherever you are",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "app": {
+    "urls": [
+      "*://avgp.github.io/direxio"
+    ],
+    "launch": {
+      "web_url": "http://avgp.github.io/direxio/"
+    }
+  },
+  "icons": {
+    "128": "img/icon.png"
+  },
+  "permissions": [
+    "geolocation",
+    "notifications",
+    "*//cors.io"
+  ]
+}

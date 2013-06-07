@@ -10,3 +10,12 @@ js/app.js
 js/controller.js
 js/directives.js
 js/services.js
+components/quojs/quo.debug.js
+components/lungo.brownie/lungo.js
+components/moment/min/moment.min.js
+components/lungo.brownie/lungo.theme.css
+components/lungo/lungo.icon.css
+components/lungo/lungo.css
+
+FALLBACK:
+https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false js/maps.js
