@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# 2013-06-07v1
+
+index.html
+img/favicon.ico
+img/icon.png
+img/loader.gif
+css/app.css
+js/app.js
+js/controller.js
+js/directives.js
+js/services.js

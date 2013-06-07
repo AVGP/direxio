@@ -2,6 +2,7 @@
   "name": "Direxio",
   "description": "Making public transit more comfortable",
   "launch_path": "/direxio/index.html",
+  "appcache_path": "/direxio/cache.manifest",
   "icons": {
     "128": "/direxio/img/icon.png"
   },
