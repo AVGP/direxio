@@ -1,6 +1,8 @@
 {
   "name": "Direxio",
-  "description": "Making public transit more comfortable",
+  "description": "Making public transit more comfortable.
+      You can get public transit directions from your current location,
+      see a map of the route and get notifications for when to leave the house",
   "launch_path": "/direxio/index.html",
   "appcache_path": "/direxio/cache.manifest",
   "icons": {
