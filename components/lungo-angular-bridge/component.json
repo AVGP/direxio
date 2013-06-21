@@ -1,7 +1,7 @@
 {
   "name": "lungo-angular-bridge",
   "description": "Bridge between LungoJS and AngularJS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/lungo-angular-bridge.js",
   "author": {
     "name": "Centralway Factory"
@@ -23,6 +23,6 @@
     "scripts",
     "test"
   ],
-  "gitHead": "68dd7f661597495eac0befe7146671e50ee30d12",
-  "_id": "lungo-angular-bridge@0.1.1"
+  "gitHead": "184c12cbbfa82ea8040f3a64d0fa49f33898c9e8",
+  "_id": "lungo-angular-bridge@0.1.2"
 }
