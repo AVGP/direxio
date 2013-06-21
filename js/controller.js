@@ -34,17 +34,35 @@ function DirectionsCtrl($scope, directionsSvc) {
         if(window.webkitNotifications && window.webkitNotifications.checkPermission() !== 0) {
             window.webkitNotifications.requestPermission();
         }
-        
-        directionsSvc.getConnectionsFromHereTo($scope.destination, function success(connections) {
-            $scope.isLoading = false;
-            console.log(connections);
-            $scope.connections = connections;
-        }, function error(error, status) {
-            if(error) {
-                alert("Oh noes! :( We had an error(" + error + ")");
-            }
-            console.log(error, status);
-            $scope.isLoading = false;
-        }, function setLoadingState(state) { $scope.loadingState = state; console.log("LS: ", $scope.loadingState); });
+        if($scope.from === "") {
+            directionsSvc.getConnectionsFromHereTo($scope.destination, function success(connections) {
+                $scope.isLoading = false;
+                console.log(connections);
+                $scope.connections = connections;
+            }, function error(error, status) {
+                if(error) {
+                    alert("Oh noes! :( We had an error(" + error + ")");
+                }
+                console.log(error, status);
+                $scope.isLoading = false;
+            }, function setLoadingState(state) { $scope.loadingState = state; console.log("LS: ", $scope.loadingState); });
+        } else { //Search from given location
+            console.log("YO!", $scope.from);
+            directionsSvc.getConnections($scope.from, $scope.destination, function success(connections) {
+                $scope.isLoading = false;
+                console.log(connections);
+                if(connections.length === 0) {
+                  alert("No connections found :C");
+                }
+                $scope.connections = connections;
+            }, function error(err, status) {
+                if(err) {
+                    alert("Oh noes! :( We had an error(" + err + ")");
+                }
+                console.log("ERR:", err);
+                console.log("Status:", status);
+                $scope.isLoading = false;
+            });
+        }
     }
 }
