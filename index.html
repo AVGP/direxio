@@ -24,6 +24,7 @@
                 <button ng-show="isInstallable()" class="wide centered" ng-class="{block: isInstallable()}" ng-click="install()">Install this app</button>
                 <h1 class="big centered">Get me directions to</h1>
                 <form>
+                    <input type="text" style="display:none" ng-model="from" class="big block wide centered" />
                     <input type="text" ng-model="destination" class="big block wide centered" />
                     <button class="block centered" ng-click="findConnections()">Show me connections</button>
                 </form>
