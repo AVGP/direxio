@@ -7,6 +7,30 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
         }    
     };
     
+    var reformatApiResponse = function(data, successCallbackFn) {
+        var connections = [];
+        for(var i=0, len = data.routes.length;i < len; i++) {
+            var route = data.routes[i];
+            var connection = route.legs[0];
+            connection.displayText = "";
+            connection.copyrights = route.copyrights;
+            if(route.legs[0].departure_time) {
+                connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow()
+                    + " - " 
+                    + route.legs[0].arrival_time.text;
+                connection.departureTime = route.legs[0].departure_time.value;
+            } else {
+                connection.displayText = route.summary;
+                connection.departureTime = new Date();
+            }
+            connection.bounds = route.bounds;
+            connections.push(connection);
+        }
+        setStatusIfNeeded("Found " + connections.length + " connections!");
+        console.log("FOUND " + connections.length + " connections");
+        successCallbackFn(connections);
+    };
+    
     self.getCurrentLocation = function(callbackFn) {
         if(!navigator.geolocation) {
             alert("Sorry, your device does not support geo location features! :/");
@@ -17,13 +41,14 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
     };
     
     self.getConnections = function(from, to, successCallbackFn, errorCallbackFn) {
-        $http({method: 'GET', url: 'http://cors.io/maps.googleapis.com/maps/api/directions/json?'
+        $http.get('https://maps.googleapis.com/maps/api/directions/json?'
             + 'origin=' + from
             + '&destination=' + to
             + '&departure_time=' + ~~(new Date().getTime() / 1000)
-            + '&sensor=true&mode=transit&alternatives=true'})
-        .success(successCallbackFn)
-        .error(errorCallbackFn);
+            + '&sensor=true&mode=transit&alternatives=true')
+        .success(function(data) {
+            reformatApiResponse(data, successCallbackFn);
+        }).error(errorCallbackFn);
     };
     
     self.getConnectionsFromHereTo = function(destination, successCallbackFn, errorCallbackFn, statusChangedCallbackFn) {
@@ -33,29 +58,7 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
             var from = position.coords.latitude + ',' + position.coords.longitude;
             console.log("Got position info");
             console.log(from);
-            self.getConnections(from, destination, function(data) {
-                var connections = [];
-                for(var i=0, len = data.routes.length;i < len; i++) {
-                    var route = data.routes[i];
-                    var connection = route.legs[0];
-                    connection.displayText = "";
-                    connection.copyrights = route.copyrights;
-                    if(route.legs[0].departure_time) {
-                        connection.displayText = moment(route.legs[0].departure_time.value * 1000).fromNow()
-                            + " - " 
-                            + route.legs[0].arrival_time.text;
-                        connection.departureTime = route.legs[0].departure_time.value;
-                    } else {
-                        connection.displayText = route.summary;
-                        connection.departureTime = new Date();
-                    }
-                    connection.bounds = route.bounds;
-                    connections.push(connection);
-                }
-                setStatusIfNeeded("Found " + connections.length + " connections!");
-                console.log("FOUND " + connections.length + " connections");
-                successCallbackFn(connections);
-            }, errorCallbackFn);
+            self.getConnections(from, destination, successCallbackFn, errorCallbackFn);
         });
     };
     
