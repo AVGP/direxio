@@ -33,11 +33,11 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
     
     self.getCurrentLocation = function(callbackFn) {
         if(!navigator.geolocation) {
-            alert("Sorry, your device does not support geo location features! :/");
+            alert("Sorry, your device does not tell me your location! :/");
             return false;
         }
         console.log("getCurrentLocation was called");
-        navigator.geolocation.getCurrentPosition(callbackFn);
+        navigator.geolocation.getCurrentPosition(callbackFn, function err() { alert("Can't get your position at the moment :('"); }, {enableHighAccuracy: true, timeout: 15000});
     };
     
     self.getConnections = function(from, to, successCallbackFn, errorCallbackFn) {
@@ -54,10 +54,10 @@ window.Direxio.factory('directionsSvc', ['$http', function($http) {
     self.getConnectionsFromHereTo = function(destination, successCallbackFn, errorCallbackFn, statusChangedCallbackFn) {
         setStatusIfNeeded("Getting current position...", statusChangedCallbackFn);
         self.getCurrentLocation(function(position) {
-            setStatusIfNeeded("Getting connections...", statusChangedCallbackFn);
-            var from = position.coords.latitude + ',' + position.coords.longitude;
             console.log("Got position info");
             console.log(from);
+            setStatusIfNeeded("Getting connections...", statusChangedCallbackFn);
+            var from = position.coords.latitude + ',' + position.coords.longitude;
             self.getConnections(from, destination, successCallbackFn, errorCallbackFn);
         });
     };
