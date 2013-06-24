@@ -22,11 +22,23 @@
 
             <article id="main-article" class="active" ng-controller="DirectionsCtrl">
                 <button ng-show="isInstallable()" class="wide centered" ng-class="{block: isInstallable()}" ng-click="install()">Install this app</button>
-                <h1 class="big centered">Get me directions to</h1>
+                <h1 class="big centered">
+                    Get me directions <span ng-hide="showFromField">to</span>
+                    <span ng-show="showFromField">from</span>
+                </h1>
                 <form>
-                    <input type="text" style="display:none" ng-model="from" class="big block wide centered" />
-                    <input type="text" ng-model="destination" class="big block wide centered" />
-                    <button class="block centered" ng-click="findConnections()">Show me connections</button>
+                    <p ng-show="showFromField">
+                    <input type="text" ng-model="from" class="big wide block centered">
+                    <span class="wide block centered">to</span>
+                    </p>
+                    <input type="text" ng-model="destination" class="big block wide centered">
+                    <div class="centered">
+                        <button class="" ng-click="findConnections()">Show me connections</button>
+                        <button ng-click="toggleCustomFrom()">
+                            <span ng-hide="showFromField">Start somewhere else</span>
+                            <span ng-show="showFromField">Start from where I am</span>
+                        </button>
+                    </div>
                 </form>
                 <div class="centered" ng-show="isLoading">
                     <img src="img/loader.gif" class="centered" alt="Loading..." />
